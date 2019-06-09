@@ -19,8 +19,10 @@ plugins {
 repositories {
     mavenCentral()
 }
-
+apply plugin: 'application'
 apply plugin: 'kotlin'
+
+mainClassName = 'dev.klich.bam.BAMImporterKt'
 
 group = 'dev.klich'
 sourceCompatibility = 1.8

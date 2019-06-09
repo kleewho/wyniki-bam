@@ -1,5 +1,6 @@
 package dev.klich.bam
 
+import dev.klich.bam.repository.RaceId
 import dev.klich.bam.sector.Season
 import org.apache.commons.csv.CSVFormat
 import org.apache.commons.csv.CSVParser
@@ -13,22 +14,7 @@ import java.io.InputStream
 import java.math.BigDecimal
 import java.nio.charset.Charset
 
-class BamSectorExtractor
 
-fun extractSectorTables(inputStream: InputStream): List<out Table>? {
-    val extractionAlgorithm: ExtractionAlgorithm = BasicExtractionAlgorithm()
-    val detectionAlgorithm = SpreadsheetDetectionAlgorithm()
-    PDDocument.load(inputStream).use { doc ->
-        val objectExtractor = ObjectExtractor(doc)
-        return objectExtractor.extract().asSequence()
-                .map { it.getArea(detectionAlgorithm.detect(it).first()) }
-                .map { page ->
-                    extractionAlgorithm.extract(page).toList()
-                }
-                .toList()
-                .flatten()
-    }
-}
 
 fun extractSectorRacerInformation(inputStream: InputStream): List<SectorRecord> {
     val format = CSVFormat.DEFAULT

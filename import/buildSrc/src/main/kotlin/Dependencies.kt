@@ -6,7 +6,7 @@ object Versions {
   const val mockk = "1.9.1.kotlin12"
   const val junit_extensions = "2.3.0"
   const val kotlin_test = "3.3.2"
-
+  const val commons_cli = "1.4"
   const val commons_csv = "1.6"
 }
 
@@ -20,6 +20,7 @@ object Libs {
   const val aws_lambda_java_core = "com.amazonaws:aws-lambda-java-core:${Versions.aws_lambda}"
   const val aws_lambda_java_events = "com.amazonaws:aws-lambda-java-events:${Versions.aws_lambda}"
   const val apache_csv = "org.apache.commons:commons-csv:${Versions.commons_csv}"
+  const val commons_cli = "commons-cli:commons-cli:${Versions.commons_cli}"
 }
 
 object TestLibs {
@@ -29,5 +30,4 @@ object TestLibs {
   const val mockk = "io.mockk:mockk:${Versions.mockk}"
   const val junit_extensions = "io.github.glytching:junit-extensions:${Versions.junit_extensions}"
   const val kotlin_test_runner = "io.kotlintest:kotlintest-runner-junit5:${Versions.kotlin_test}"
-
 }

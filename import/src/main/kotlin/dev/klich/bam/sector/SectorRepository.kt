@@ -7,8 +7,6 @@ import com.amazonaws.services.dynamodbv2.document.Item
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
 import com.fasterxml.jackson.module.kotlin.readValue
 import dev.klich.bam.BibNumber
-import dev.klich.bam.RaceId
-import dev.klich.bam.RaceInfo
 import dev.klich.bam.SectorRacerInformation
 import dev.klich.bam.repository.InMemoryRaceInfoRepository
 import java.time.Duration
