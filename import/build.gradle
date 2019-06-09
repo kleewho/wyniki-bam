@@ -1,0 +1,75 @@
+buildscript {
+
+    repositories {
+        mavenCentral()
+        maven { url "https://plugins.gradle.org/m2/" }
+    }
+
+    dependencies {
+        classpath Plugins.kotlin_gradle_plugin
+        classpath 'com.github.jengelman.gradle.plugins:shadow:2.0.1'
+        classpath Plugins.kotlin_allopen
+    }
+}
+
+plugins {
+  id "com.github.johnrengelman.shadow" version "5.0.0"
+}
+
+repositories {
+    mavenCentral()
+}
+
+apply plugin: 'kotlin'
+
+group = 'dev.klich'
+sourceCompatibility = 1.8
+compileKotlin {
+    kotlinOptions {
+        freeCompilerArgs = ["-Xjsr305=strict"]
+        jvmTarget = "1.8"
+    }
+}
+compileTestKotlin {
+    kotlinOptions {
+        freeCompilerArgs = ["-Xjsr305=strict"]
+        jvmTarget = "1.8"
+    }
+}
+
+
+dependencies {
+
+    implementation Libs.kotlin_stdlib_jdk8
+    implementation Libs.aws_lambda_java_core
+    implementation Libs.aws_lambda_java_events
+    implementation "technology.tabula:tabula:1.0.2"
+    implementation Libs.apache_csv
+    compile 'com.fasterxml.jackson.module:jackson-module-kotlin:2.9.7'
+
+    testImplementation TestLibs.junit_jupiter_api
+    testImplementation TestLibs.junit_jupiter_params
+    testImplementation TestLibs.junit_engine
+    testImplementation TestLibs.mockk
+    testImplementation TestLibs.junit_extensions
+    testImplementation TestLibs.kotlin_test_runner
+
+}
+
+test {
+	useJUnitPlatform()
+	testLogging {
+		events("passed", "skipped", "failed")
+	}
+}
+
+
+task buildZip(type: Zip) {
+    from compileKotlin
+    from processResources
+    into('lib') {
+        from configurations.compileClasspath
+    }
+}
+
+//build.dependsOn buildZip

@@ -1,0 +1,9 @@
+.gradle
+buildSrc/.gradle
+out
+.kotlintest
+node_modules
+.serverless
+.vscode
+.angulardoc.json
+bin

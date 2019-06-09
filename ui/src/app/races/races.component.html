@@ -1,0 +1,9 @@
+<h2>Dotychczasowe wyścigi BAM</h2>
+
+<ul>
+  <li *ngFor="let race of races$ | async" (click)="onSelect(race)">
+    <span class="badge">{{race.id}}</span>
+  </li>
+</ul>
+
+<app-race-detail [race]="selectedRace"></app-race-detail>
