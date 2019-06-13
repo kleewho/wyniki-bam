@@ -7,12 +7,12 @@ const dynamoDb = new AWS.DynamoDB.DocumentClient();
 const promisify = foo => new Promise((resolve, reject) => {
     foo((error, result) => {
         if (error) {
-            reject(error)
+            reject(error);
         } else {
-            resolve(result)
+            resolve(result);
         }
-    })
-})
+    });
+});
 
 const typeDefs = gql`
 type Race {
@@ -48,8 +48,8 @@ const races = [
 ];
 
 
-const getSeason = year => ({races: races.filter(race => race.id.includes(year))})
-const getSeasons = () => []
+const getSeason = year => ({races: races.filter(race => race.id.includes(year))});
+const getSeasons = () => [];
 const getRace = raceId => promisify(callback =>
     dynamoDb.get({
         TableName: process.env.DYNAMODB_TABLE,
@@ -59,9 +59,9 @@ const getRace = raceId => promisify(callback =>
         return {
             numberOfDnfs: result.Item.numberOfDnfs,
             id: result.Item.raceId
-        }
-    })
-const getRaces = () => races
+        };
+    });
+const getRaces = () => races;
 
 const resolvers = {
     Query: {
@@ -76,7 +76,11 @@ const resolvers = {
 const server = new ApolloServer({ typeDefs, resolvers });
 
 module.exports.handler = (event, context, callback) => {
-    const handler = server.createHandler();
+    const handler = server.createHandler({
+        cors: {
+            origin: '*'
+        }
+    });
 
     // tell AWS lambda we do not want to wait for NodeJS event loop
     // to be empty in order to send the response

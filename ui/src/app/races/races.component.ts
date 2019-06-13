@@ -10,17 +10,16 @@ import { RacesGQL, Race } from '../query/RacesGQL';
 })
 export class RacesComponent implements OnInit {
   selectedRace: Race;
-  races$: Observable<Race[]>;
+  public races$: Observable<Race[]>;
 
   constructor(private racesGQL: RacesGQL) { }
 
   ngOnInit() {
-    const races = this.racesGQL.watch()
+    this.races$ = this.racesGQL.watch()
     .valueChanges
     .pipe(
       map(result => result.data.races)
     );
-    this.races$ = races;
   }
 
   onSelect(race: Race): void {
