@@ -10,7 +10,7 @@
   "license": "MIT",
   "dependencies": {
     "apollo-server-lambda": "^2.6.2",
-    "aws-sdk": "^2.471.0",
+    "aws-sdk": "^2.814.0",
     "graphql": "^14.3.1",
     "merge-graphql-schemas": "^1.5.8",
     "serverless": "^1.44.1"
